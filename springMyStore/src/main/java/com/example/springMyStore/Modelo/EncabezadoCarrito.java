@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+//import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -24,7 +24,7 @@ public class EncabezadoCarrito {
 	private int encc_iva;
 	@Column(name = "encc_total", nullable = false)
 	private int encc_total;
-	@JsonBackReference
+	//@JsonBackReference
 	@JoinColumn(name = "cli_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Cliente cliente;

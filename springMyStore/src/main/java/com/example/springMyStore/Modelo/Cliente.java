@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+//import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -19,7 +19,7 @@ public class Cliente {
 	private String cli_usuario;
 	@Column (name = "cli_password", nullable = false)
 	private String cli_password;
-	@JsonBackReference
+	//@JsonBackReference
 	@JoinColumn(name = "per_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Persona persona;

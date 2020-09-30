@@ -2,7 +2,7 @@ package com.example.springMyStore.Modelo;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+//import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "DetalleCarrito")
@@ -22,7 +22,7 @@ public class DetalleCarrito {
 	private int detc_descuento;
 	@Column(name = "detc_subtotal",nullable = false)
 	private int detc_subtotal;
-	@JsonBackReference
+	//@JsonBackReference
 	@JoinColumn(name = "encc_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private EncabezadoCarrito encabezadocarrito;

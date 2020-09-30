@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+//import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "Rol")
@@ -18,7 +18,7 @@ public class Rol {
 	private String rol_departamento;
 	@Column(name="rol_estado",nullable = false)
 	private String rol_estado;
-	@JsonManagedReference
+//	@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "rol")
 	private List<Empleado> empleado;
 	

@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+//import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -17,7 +17,7 @@ public class ProductoProveedor {
 	private int pp_stock;
 	@Column(name = "pp_estado", nullable = false)
 	private String pp_estado;
-	@JsonBackReference
+	//@JsonBackReference
 	@JoinColumn(name = "pro_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Producto producto;

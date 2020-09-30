@@ -2,7 +2,7 @@ package com.example.springMyStore.Modelo;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+//import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "Chat")
@@ -14,7 +14,7 @@ public class Chat {
 	private String cha_mensajes;
 	@Column(name = "cha_imagenes", nullable = false)
 	private String cha_imagenes;
-	@JsonBackReference
+	//@JsonBackReference
 	@JoinColumn(name = "cli_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Cliente cliente;

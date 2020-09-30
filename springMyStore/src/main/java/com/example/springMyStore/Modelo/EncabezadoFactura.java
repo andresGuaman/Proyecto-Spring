@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+//import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -26,7 +26,7 @@ public class EncabezadoFactura {
 	private int enc_total;
 	
 	
-	@JsonBackReference
+	//@JsonBackReference
 	@JoinColumn(name = "cli_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Cliente cliente;
