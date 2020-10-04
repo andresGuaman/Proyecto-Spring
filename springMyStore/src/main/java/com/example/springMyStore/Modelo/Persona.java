@@ -29,7 +29,7 @@ public class Persona {
 	private String per_estado;
 	@Column(name = "per_foto", nullable = false)
 	private String per_foto;
-	@JsonManagedReference
+	 @JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "persona" )
 	private List<Direccion> direccion;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "persona")
