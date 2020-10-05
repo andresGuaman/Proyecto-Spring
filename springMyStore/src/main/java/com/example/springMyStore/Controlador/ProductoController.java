@@ -37,7 +37,7 @@ public class ProductoController {
 	}
 
    @GetMapping("/detail/{id}")
-   public ResponseEntity<Producto> getById(@PathVariable("id") int id){
+   public ResponseEntity<Producto> getById(@PathVariable("id") Long id){
 	   if(!productoService.existeById(id))
 		   return new ResponseEntity(new Mensajes("El producto no existe"), HttpStatus.NOT_FOUND);
 	   Producto producto = productoService.getId(id).get();
@@ -47,11 +47,11 @@ public class ProductoController {
    @PostMapping("/create")
    public ResponseEntity<?> create(@RequestBody Producto producto){
 	   productoService.save(producto);
-	   return new ResponseEntity(new Mensajes("Producto Agragado"), HttpStatus.OK);
+	   return new ResponseEntity(new Mensajes("Producto Agregado"), HttpStatus.OK);
    }
    
    @PutMapping("update/{id}")
-   public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody Producto producto){
+   public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody Producto producto){
 	   if(!productoService.existeById(id))
 		   return new ResponseEntity(new Mensajes("Producto no existente"), HttpStatus.NOT_FOUND);
 	   Producto productos = productoService.getId(id).get();
@@ -69,7 +69,7 @@ public class ProductoController {
    
    
    @DeleteMapping("/delete/{id}")
-   public ResponseEntity<?> delete(@PathVariable("id") int id){
+   public ResponseEntity<?> delete(@PathVariable("id") Long id){
 	if(!productoService.existeById(id))
 		return new ResponseEntity(new Mensajes("El producto no existe"), HttpStatus.NOT_FOUND);
 	productoService.delete(id);
