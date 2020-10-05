@@ -1,17 +1,16 @@
 package com.example.springMyStore.Controlador;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+
+import com.example.springMyStore.Modelo.Mensajes;
 import com.example.springMyStore.Modelo.Producto;
-import com.example.springMyStore.Repositorio.ProductoRepository;
+import com.example.springMyStore.Servicio.ProductoService;
 
-import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,56 +23,57 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/")
 @CrossOrigin(origins = "http://localhost:4200")
 public class ProductoController {
     
     @Autowired
-    private ProductoRepository productoRepository;
+    ProductoService productoService;
      
     @GetMapping("/Producto")
-    public List<Producto> getAllProducto(){
-        return productoRepository.findAll();
-    }
+    public ResponseEntity<List<Producto>> list(){
+		List<Producto> list = productoService.list();
+		return new ResponseEntity(list, HttpStatus.OK);
+	}
 
-    @GetMapping("/Producto/{pro_id}")
-     public ResponseEntity<Producto>getProductoById(@PathVariable(value = "pro_id")Long pro_id)throws ResourceNotFoundException{
-         Producto producto=productoRepository.findById(pro_id).orElseThrow(()-> new ResourceNotFoundException("No se puede encontrar el producto con el id:"+pro_id));
-         return ResponseEntity.ok().body(producto);
-     }
-     
-     @PostMapping("/Producto")
-     public Producto createProducto(@Validated @RequestBody Producto producto){
-         return productoRepository.save(producto);
-     }
-
-     @PutMapping("/Producto/{pro_id}")
-     public ResponseEntity<Producto> updatePersona(@PathVariable(value = "pro_id") Long pro_id,
-             @Validated @RequestBody Producto producto) throws ResourceNotFoundException {
-        Producto producto2=productoRepository.findById(pro_id).orElseThrow(()-> new ResourceNotFoundException("No se puede encontrar el producto con el id:"+pro_id));
-       producto2.setPro_codigo_barra(producto.getPro_codigo_barra());
-       producto2.setPro_costo(producto.getPro_costo());
-       producto2.setPro_descripcion(producto.getPro_descripcion());
-       producto2.setPro_foto(producto.getPro_foto());
-       producto2.setPro_marca(producto.getPro_foto());
-       producto2.setPro_modelo(producto.getPro_modelo());
-       producto2.setPro_precio(producto.getPro_precio());
-       producto2.setPro_stock(producto.getPro_stock());
-       final Producto updateProducto=productoRepository.save(producto2);
-       return ResponseEntity.ok(updateProducto);
-     }
-
-     @DeleteMapping("/Producto/{pro_id}")
-     public Map<String, Boolean> deleteProducto(@PathVariable(value = "pro_id")Long pro_id)throws ResourceNotFoundException{
-        Producto producto2=productoRepository.findById(pro_id).orElseThrow(()-> new ResourceNotFoundException("No se puede encontrar el producto con el id:"+pro_id));
-       productoRepository.delete(producto2);
-       Map<String, Boolean>response = new HashMap<>();
-       response.put("deleted", Boolean.TRUE);
-       return response; 
-     }
-     
-
-
-
-
+   @GetMapping("/detail/{id}")
+   public ResponseEntity<Producto> getById(@PathVariable("id") int id){
+	   if(!productoService.existeById(id))
+		   return new ResponseEntity(new Mensajes("El producto no existe"), HttpStatus.NOT_FOUND);
+	   Producto producto = productoService.getId(id).get();
+	   return new ResponseEntity(producto, HttpStatus.OK);
+   }
+   
+   @PostMapping("/create")
+   public ResponseEntity<?> create(@RequestBody Producto producto){
+	   productoService.save(producto);
+	   return new ResponseEntity(new Mensajes("Producto Agragado"), HttpStatus.OK);
+   }
+   
+   @PutMapping("update/{id}")
+   public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody Producto producto){
+	   if(!productoService.existeById(id))
+		   return new ResponseEntity(new Mensajes("Producto no existente"), HttpStatus.NOT_FOUND);
+	   Producto productos = productoService.getId(id).get();
+	   productos.setPro_foto(productos.getPro_foto());
+	   productos.setPro_descripcion(producto.getPro_descripcion());
+	   productos.setPro_costo(producto.getPro_costo());
+	   productos.setPro_precio(producto.getPro_precio());
+	   productos.setPro_stock(producto.getPro_stock());
+	   productos.setPro_codigo_barra(producto.getPro_codigo_barra());
+	   productos.setPro_marca(producto.getPro_marca());
+	   productos.setPro_modelo(producto.getPro_modelo());
+	   productoService.save(productos);
+	   return new ResponseEntity(new Mensajes("Producto Actualizado"), HttpStatus.OK);
+   }
+   
+   
+   @DeleteMapping("/delete/{id}")
+   public ResponseEntity<?> delete(@PathVariable("id") int id){
+	if(!productoService.existeById(id))
+		return new ResponseEntity(new Mensajes("El producto no existe"), HttpStatus.NOT_FOUND);
+	productoService.delete(id);
+	return new ResponseEntity(new Mensajes("Producto Eliminado"), HttpStatus.OK);
+				
+   }
 }

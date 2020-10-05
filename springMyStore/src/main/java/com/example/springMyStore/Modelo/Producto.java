@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.*;
 
 //import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+//import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "Producto")
@@ -34,7 +34,7 @@ public class Producto {
 	@JoinColumn(name = "cat_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Categoria categoria;
-	@JsonManagedReference
+	//@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "producto")
 	private List<ProductoProveedor> productoproveedor;
 	public Producto() {
