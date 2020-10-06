@@ -10,17 +10,22 @@ public class Chat {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long cha_id;
+
 	@Column(name = "cha_mensajes", nullable = false)
 	private String cha_mensajes;
+
 	@Column(name = "cha_imagenes", nullable = false)
 	private String cha_imagenes;
+
 	//@JsonBackReference
 	@JoinColumn(name = "cli_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Cliente cliente;
+
 	@JoinColumn(name = "emp_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Empleado empleado;
+	
 	public Chat() {
 		
 	}

@@ -2,10 +2,7 @@ package com.example.springMyStore.Modelo;
 
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity 
 @Table(name = "Persona")
@@ -23,24 +20,28 @@ public class Persona {
 	private String per_telefono;
 	@Column(name = "per_correo", nullable = false)
 	private String per_correo;
-	@Column(name = "per_fecha_creacion", nullable = false)
+	@Column(name = "per_fecha_creacion", nullable = true)
 	private Date per_fecha_creacion;
 	@Column(name = "per_estado", nullable = false)
 	private String per_estado;
 	@Column(name = "per_foto", nullable = false)
 	private String per_foto;
-	 @JsonManagedReference
+
+	//@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "persona" )
 	private List<Direccion> direccion;
+
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "persona")
 	private List<Empleado> empleado; 
+
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "persona")
 	private List<Cliente> cliente;
+
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "persona")
 	private List<Proveedor> proveedor;
-	public Persona() {
-		
-	}
+
+	public Persona() {	}
+	
 	public Persona(long per_id, String per_cedula, String per_nombre, String per_apellido, String per_telefono, String per_correo, Date per_fecha_creacion, String per_estado, String per_foto ) {
 		this.per_id=per_id;
 		this.per_cedula=per_cedula;

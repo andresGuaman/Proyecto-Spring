@@ -18,6 +18,7 @@ public class Rol {
 	private String rol_departamento;
 	@Column(name="rol_estado",nullable = false)
 	private String rol_estado;
+	
 //	@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "rol")
 	private List<Empleado> empleado;

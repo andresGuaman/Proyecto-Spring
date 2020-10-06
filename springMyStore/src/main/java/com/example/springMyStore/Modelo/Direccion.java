@@ -1,8 +1,8 @@
 package com.example.springMyStore.Modelo;
 
 import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
-//import com.fasterxml.jackson.annotation.JsonBackReference;
 @Entity
 @Table(name = "Direccion")
 public class Direccion {
@@ -21,12 +21,15 @@ public class Direccion {
 	private String dir_postal;
 	@Column(name = "dir_latitud", nullable = false)
 	private String dir_latitud;
+
 	//@JsonBackReference
 	@JoinColumn(name = "per_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Persona persona;
+
 	public Direccion() {
 	}
+
 	public Direccion(long dir_id, String dir_cuidad, String dir_calle1, String dir_calle2, String dir_referencia, String dir_postal, String dir_latitud) {
 		this.dir_id=dir_id;
 		this.dir_cuidad=dir_cuidad;
