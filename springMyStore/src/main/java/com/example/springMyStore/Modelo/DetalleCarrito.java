@@ -10,17 +10,17 @@ public class DetalleCarrito {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long detc_id;
-	@Column(name = "detc_cantidad",nullable = false)
+	@Column(name = "detc_cantidad")
 	private int detc_cantidad;
-	@Column(name = "detc_valor_unitario",nullable = false)
+	@Column(name = "detc_valor_unitario")
 	private int detc_valor_unitario;
-	@Column(name = "detc_valor_total",nullable = false)
+	@Column(name = "detc_valor_total")
 	private int detc_valor_total;
-	@Column(name = "detc_iva",nullable = false)
+	@Column(name = "detc_iva")
 	private int detc_iva;
-	@Column(name = "detc_descuento",nullable = false)
+	@Column(name = "detc_descuento")
 	private int detc_descuento;
-	@Column(name = "detc_subtotal",nullable = false)
+	@Column(name = "detc_subtotal")
 	private int detc_subtotal;
 	//@JsonBackReference
 	@JoinColumn(name = "encc_id")

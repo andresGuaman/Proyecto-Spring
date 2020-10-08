@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+//import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "MetodoPago")
@@ -18,7 +18,7 @@ public class MetodoPago {
 	private String met_nro_tarjeta;
 	@Column(name = "met_tipo")
 	private String met_tipo;
-	@JsonManagedReference
+	//@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "metodopago")
 	private List<EncabezadoFactura> encabezadofactura;
 	

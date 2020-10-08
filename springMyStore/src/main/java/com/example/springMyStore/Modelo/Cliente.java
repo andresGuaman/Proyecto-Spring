@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+//import com.fasterxml.jackson.annotation.JsonBackReference;
+//import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "Cliente")
@@ -13,11 +13,11 @@ public class Cliente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	long cli_id;
-	@Column(name = "cli_descuento", nullable = false)
+	@Column(name = "cli_descuento")
 	private double cli_descuento;
-	@Column(name = "cli_usuario", nullable = false)
+	@Column(name = "cli_usuario")
 	private String cli_usuario;
-	@Column (name = "cli_password", nullable = false)
+	@Column (name = "cli_password")
 	private String cli_password;
 
 	//@JsonBackReference

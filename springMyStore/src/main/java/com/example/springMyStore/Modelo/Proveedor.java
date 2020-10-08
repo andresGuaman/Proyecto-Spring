@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.*;
 
 //import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+//import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "Proveedor")
@@ -13,15 +13,15 @@ public class Proveedor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long prov_id;
-	@Column(name = "prov_ruc", nullable = false)
+	@Column(name = "prov_ruc")
 	private String prov_ruc;
-	@Column(name = "prov_empresa", nullable = false)
+	@Column(name = "prov_empresa")
 	private String prov_empresa;
 	//@JsonBackReference
 	@JoinColumn(name = "per_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Persona persona;
-	@JsonManagedReference
+	//@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "proveedor")
 	private List<ProductoProveedor> productoproveedor;
 	public Proveedor() {

@@ -10,19 +10,19 @@ public class DetalleFactura {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long det_id;
-	@Column(name = "det_cantidad", nullable = false)
+	@Column(name = "det_cantidad")
 	private int det_cantidad;
-	@Column(name = "det_valor_unitario", nullable = false)
+	@Column(name = "det_valor_unitario")
 	private int det_valor_unitario;
-	@Column(name = "det_valor_total", nullable = false)
+	@Column(name = "det_valor_total")
 	private int det_valor_total;
-	@Column(name = "det_iva", nullable = false)
+	@Column(name = "det_iva")
 	private int det_iva;
-	@Column(name = "det_descuento", nullable = false)
+	@Column(name = "det_descuento")
 	private int det_descuento;
-	@Column(name = "det_subtotal", nullable = false)
+	@Column(name = "det_subtotal")
 	private int det_subtotal;
-	@Column(name = "det_total", nullable = false)
+	@Column(name = "det_total")
 	private int det_total;
 	//@JsonBackReference
 	@JoinColumn(name = "enc_id")

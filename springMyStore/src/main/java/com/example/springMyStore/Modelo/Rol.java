@@ -12,11 +12,11 @@ public class Rol {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long rol_id;
-	@Column(name = "rol_nombre", nullable = false)
+	@Column(name = "rol_nombre")
 	private String rol_nombre;
-	@Column(name = "rol_departamento", nullable = false)
+	@Column(name = "rol_departamento")
 	private String rol_departamento;
-	@Column(name="rol_estado",nullable = false)
+	@Column(name="rol_estado")
 	private String rol_estado;
 	
 //	@JsonManagedReference

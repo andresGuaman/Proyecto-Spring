@@ -10,21 +10,21 @@ public class Persona {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long per_id;
-	@Column(name = "per_cedula", nullable = false)
+	@Column(name = "per_cedula")
 	private String per_cedula;
-	@Column(name = "per_nombre", nullable = false)
+	@Column(name = "per_nombre")
 	private String per_nombre;
-	@Column(name = "per_apellido", nullable = false)
+	@Column(name = "per_apellido")
 	private String per_apellido;
-	@Column(name = "per_telefono", nullable = false)
+	@Column(name = "per_telefono")
 	private String per_telefono;
-	@Column(name = "per_correo", nullable = false)
+	@Column(name = "per_correo")
 	private String per_correo;
-	@Column(name = "per_fecha_creacion", nullable = true)
+	@Column(name = "per_fecha_creacion")
 	private Date per_fecha_creacion;
-	@Column(name = "per_estado", nullable = false)
+	@Column(name = "per_estado")
 	private String per_estado;
-	@Column(name = "per_foto", nullable = false)
+	@Column(name = "per_foto")
 	private String per_foto;
 
 	//@JsonManagedReference

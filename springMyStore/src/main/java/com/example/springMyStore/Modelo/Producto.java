@@ -14,21 +14,21 @@ public class Producto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long pro_id;
-	@Column(name = "pro_foto", nullable = false)
+	@Column(name = "pro_foto")
 	private String pro_foto;
-	@Column(name = "pro_descripcion", nullable = false)
+	@Column(name = "pro_descripcion")
 	private String pro_descripcion;
-	@Column(name = "pro_costo", nullable = false)
+	@Column(name = "pro_costo")
 	private int pro_costo;
-	@Column(name = "pro_precio", nullable = false)
+	@Column(name = "pro_precio")
 	private int pro_precio;
-	@Column(name = "pro_stock", nullable = false)
+	@Column(name = "pro_stock")
 	private int pro_stock;
-	@Column(name = "pro_codigo_barra", nullable = false)
+	@Column(name = "pro_codigo_barra")
 	private String pro_codigo_barra;
-	@Column(name = "pro_marca", nullable = false)
+	@Column(name = "pro_marca")
 	private String pro_marca;
-	@Column(name = "pro_modelo", nullable = false)
+	@Column(name = "pro_modelo")
 	private String pro_modelo;
 	//@JsonBackReference
 	@JoinColumn(name = "cat_id")

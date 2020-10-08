@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/")
 @CrossOrigin(origins = "http://localhost:4200")
 public class ProductoProveedorController {
     
@@ -51,7 +51,6 @@ public class ProductoProveedorController {
     public ResponseEntity<ProductoProveedor>updateProducPro(@PathVariable(value = "pp_id")Long pp_id, @Validated @RequestBody ProductoProveedor productoProveedor)throws ResourceNotFoundException{
         ProductoProveedor productoProveedor2=productoProveedorRepository.findById(pp_id).orElseThrow(()->new ResourceNotFoundException("No se encontro el producto proveedor con el id:"+pp_id));
         productoProveedor2.setPp_estado(productoProveedor.getPp_estado());
-        productoProveedor2.setPp_stock(productoProveedor.getPp_stock());
         final ProductoProveedor UpdateproductoProveedor=productoProveedorRepository.save(productoProveedor2);
         return ResponseEntity.ok(UpdateproductoProveedor);
     }

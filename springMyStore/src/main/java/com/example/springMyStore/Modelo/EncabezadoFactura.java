@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.*;
 
 //import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+//import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table (name = "EncabezadoFactura")
@@ -14,15 +14,15 @@ public class EncabezadoFactura {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long enc_id;
-	@Column(name = "enc_fecha", nullable = false)
+	@Column(name = "enc_fecha")
 	private Date enc_fecha;
-	@Column(name = "enc_descuento", nullable = false)
+	@Column(name = "enc_descuento")
 	private int enc_descuento;
-	@Column(name = "enc_subtotal", nullable = false)
+	@Column(name = "enc_subtotal")
 	private int enc_subtotal;
-	@Column(name = "enc_iva", nullable = false)
+	@Column(name = "enc_iva")
 	private int enc_iva;
-	@Column(name = "enc_total", nullable = false)
+	@Column(name = "enc_total")
 	private int enc_total;
 	
 	
@@ -35,7 +35,7 @@ public class EncabezadoFactura {
 	private MetodoPago metodopago;
 	
 	
-	@JsonManagedReference
+	//@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "encabezadofactura")
 	private List<DetalleFactura> detallefactura;
 	public EncabezadoFactura() {

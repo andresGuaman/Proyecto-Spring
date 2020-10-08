@@ -1,7 +1,7 @@
 package com.example.springMyStore.Modelo;
 
 import javax.persistence.*;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+//import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "Direccion")
@@ -9,17 +9,17 @@ public class Direccion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long dir_id;
-	@Column(name = "dir_cuidad", nullable = false)
+	@Column(name = "dir_cuidad")
 	private String dir_cuidad;
-	@Column(name = "dir_calle1", nullable = false)
+	@Column(name = "dir_calle1")
 	private String dir_calle1;
-	@Column(name = "dir_calle2", nullable = false)
+	@Column(name = "dir_calle2")
 	private String dir_calle2;
-	@Column(name = "dir_referencia", nullable = false)
+	@Column(name = "dir_referencia")
 	private String dir_referencia;
-	@Column(name = "dir_postal", nullable = false)
+	@Column(name = "dir_postal")
 	private String dir_postal;
-	@Column(name = "dir_latitud", nullable = false)
+	@Column(name = "dir_latitud")
 	private String dir_latitud;
 
 	//@JsonBackReference

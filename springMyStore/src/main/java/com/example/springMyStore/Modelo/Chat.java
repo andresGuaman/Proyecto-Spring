@@ -11,10 +11,10 @@ public class Chat {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long cha_id;
 
-	@Column(name = "cha_mensajes", nullable = false)
+	@Column(name = "cha_mensajes")
 	private String cha_mensajes;
 
-	@Column(name = "cha_imagenes", nullable = false)
+	@Column(name = "cha_imagenes")
 	private String cha_imagenes;
 
 	//@JsonBackReference

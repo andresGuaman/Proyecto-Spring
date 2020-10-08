@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+//import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "Categoria")
@@ -12,17 +12,17 @@ public class Categoria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long cat_id;
-	@Column(name = "cat_genero", nullable = false)
+	@Column(name = "cat_genero")
 	private String cat_genero;
-	@Column(name = "cat_edad", nullable = false)
+	@Column(name = "cat_edad")
 	private int cat_edad;
-	@Column(name = "cat_marca", nullable = false)
+	@Column(name = "cat_marca")
 	private String cat_marca;
-	@Column(name = "cat_categoria", nullable = false)
+	@Column(name = "cat_categoria")
 	private String cat_categoria;
-	@Column(name = "cat_color", nullable = false)
+	@Column(name = "cat_color")
 	private String cat_color;
-	@JsonManagedReference
+	//@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY , mappedBy = "categoria")
 	private List<Producto> producto;
 	public Categoria() {
