@@ -24,20 +24,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/")
 @CrossOrigin(origins = "http://localhost:4200")
 public class CategoriaControler {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
     //Mostrar todo
-    @GetMapping("/Categoria")
+    @GetMapping("Categoria")
     public List<Categoria> getAllCategoria(){
         return categoriaRepository.findAll();
     }
     
-    //Buscar por
-    @GetMapping("/Categoria/{cat_id}")
+    //Buscar por id
+    @GetMapping("Categoria/{cat_id}")
     public ResponseEntity<Categoria> getCategoriaById(@PathVariable(value = "cat_id")Long cat_id) throws ResourceNotFoundException{
         Categoria categoria=categoriaRepository.findById(cat_id).orElseThrow(()-> new ResourceNotFoundException("No se pudo encontrar la categoria con el id: "+cat_id));
         return ResponseEntity.ok().body(categoria);
@@ -45,7 +45,7 @@ public class CategoriaControler {
 
 
     //Guardar
-    @PostMapping("/Categoria")
+    @PostMapping("Categoria")
     public Categoria creatCategoria(@Validated @RequestBody Categoria categoria){
         return categoriaRepository.save(categoria);
     }
@@ -64,7 +64,7 @@ public class CategoriaControler {
     }
 
     //Eliminar
-    @DeleteMapping("/Categoria/{cat_id}")
+    @DeleteMapping("Categoria/{cat_id}")
     public Map<String, Boolean> deleteCategoria (@PathVariable(value = "cat_id")Long cat_id)throws ResourceNotFoundException{
         Categoria categoria2=categoriaRepository.findById(cat_id).orElseThrow(()-> new ResourceNotFoundException("No se pudo encontrar la categoria con el id: "+cat_id));
         categoriaRepository.delete(categoria2);

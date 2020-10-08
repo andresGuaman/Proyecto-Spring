@@ -24,30 +24,30 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/")
 @CrossOrigin(origins = "http://localhost:4200")
 public class ProveedorControlle {
 
     @Autowired
     private ProveedorRepository proveedorRepository;
 
-    @GetMapping("/Proveedor")
+    @GetMapping("Proveedor")
     public List<Proveedor> getAllProveedor(){
         return proveedorRepository.findAll();
     }
 
-    @GetMapping("/Proveedor/{prov_id}")
+    @GetMapping("Proveedor/{prov_id}")
     public ResponseEntity<Proveedor>getProveedorById(@PathVariable(value = "prov_id")Long prov_id)throws ResourceNotFoundException{
         Proveedor proveedor=proveedorRepository.findById(prov_id).orElseThrow(()-> new ResourceNotFoundException("No se encontro el proveedor con el id:"+prov_id));
         return ResponseEntity.ok().body(proveedor);
     }
 
-    @PostMapping("/Proveedor")
+    @PostMapping("Proveedor")
     public Proveedor createProveedor(@Validated @RequestBody Proveedor proveedor){
         return proveedorRepository.save(proveedor);
     }
 
-    @PutMapping("/Proveedor/{prov_id}")
+    @PutMapping("Proveedor/{prov_id}")
     public ResponseEntity<Proveedor>updateProveedor(@PathVariable(value = "prov_id")Long prov_id, @Validated @RequestBody Proveedor proveedor)throws ResourceNotFoundException{
         Proveedor proveedor2=proveedorRepository.findById(prov_id).orElseThrow(()-> new ResourceNotFoundException("No se encontro el proveedor con el id:"+prov_id));
          proveedor2.setProv_empresa(proveedor.getProv_empresa());
@@ -56,7 +56,7 @@ public class ProveedorControlle {
          return ResponseEntity.ok(updatProveedor);
     }
 
-    @DeleteMapping("/Proveedor/{prov_id}")
+    @DeleteMapping("Proveedor/{prov_id}")
     public Map<String, Boolean> deleteProveedor(@PathVariable(value = "prov_id")Long prov_id)throws ResourceNotFoundException{
         Proveedor proveedor2=proveedorRepository.findById(prov_id).orElseThrow(()-> new ResourceNotFoundException("No se encontro el proveedor con el id:"+prov_id));
        proveedorRepository.delete(proveedor2);
