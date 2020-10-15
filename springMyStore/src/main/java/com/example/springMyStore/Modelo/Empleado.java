@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.*;
 
 //import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+//import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "Empleado")
@@ -27,7 +27,7 @@ public class Empleado {
 	@JoinColumn(name = "rol_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Rol rol;
-	@JsonManagedReference
+	//@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "empleado")
 	private List<Chat> chat;
 	public Empleado() {

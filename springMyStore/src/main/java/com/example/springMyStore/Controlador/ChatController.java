@@ -25,25 +25,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/")
 @CrossOrigin(origins = "http://localhost:4200")
 public class ChatController {
     
     @Autowired
     private ChatRepository chatRepository;
 
-    @GetMapping("/Chat")
+    @GetMapping("Chat")
     public List<Chat> getAllChat(){
         return chatRepository.findAll();
     }
 
-    @GetMapping("/Chat/{cha_id}")
+    @GetMapping("Chat/{cha_id}")
     public ResponseEntity<Chat> getChatById(@PathVariable(value = "cha_id")Long cha_id)throws ResourceNotFoundException {
       Chat chat=chatRepository.findById(cha_id).orElseThrow(()-> new ResourceNotFoundException("No se a podido encontrara el chat por el id:"+cha_id));
         return ResponseEntity.ok().body(chat);
     }
 
-    @PostMapping("/Chat")
+    @PostMapping("Chat")
     public Chat createChat (@Validated @RequestBody Chat chat){
         return chatRepository.save(chat);
     }
@@ -57,7 +57,7 @@ public class ChatController {
         return ResponseEntity.ok(updateChat);
     }
 
-    @DeleteMapping("/Chat/{cha_id}")
+    @DeleteMapping("Chat/{cha_id}")
     public Map<String, Boolean> deleteChat(@PathVariable(value = "cha_id")Long cha_id)throws ResourceNotFoundException{
       Chat chat2=chatRepository.findById(cha_id).orElseThrow(()-> new ResourceNotFoundException("No se puede encontrar el chat con el id: "+cha_id));
       chatRepository.delete(chat2);

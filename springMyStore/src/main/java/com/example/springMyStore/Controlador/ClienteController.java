@@ -22,20 +22,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/")
 @CrossOrigin(origins = "http://localhost:4200")
 public class ClienteController {
     
     @Autowired
     private ClienteRepository clienteRepository;
 
-    @GetMapping("/Cliente")
+    @GetMapping("Cliente")
     public List<Cliente> getAllCliete(){
 
         return clienteRepository.findAll();
     }
 
-    @GetMapping("/Cliente/{cli_id}")
+    @GetMapping("Cliente/{cli_id}")
     public ResponseEntity<Cliente> getClieteById(@PathVariable(value = "cli_id")Long cli_id)throws ResourceNotFoundException{
 
         Cliente cliente=clienteRepository.findById(cli_id).orElseThrow(()-> new ResourceNotFoundException("No se pudo encontrar al Cliente con el id:"+cli_id));
@@ -43,7 +43,7 @@ public class ClienteController {
     }
 
     //Find by Username and password
-    @GetMapping("/Cliente/{cli_usuario}/{cli_password}")
+    @GetMapping("Cliente/{cli_usuario}/{cli_password}")
     public ResponseEntity<Cliente> getClieteByUserPass(@PathVariable(value = "cli_usuario") String cli_usuario, @PathVariable(value = "cli_password") String cli_password) {
 
         Cliente cliente = clienteRepository.findByUserPass(cli_usuario, cli_password);
@@ -51,7 +51,7 @@ public class ClienteController {
     }
 
 
-    @PostMapping("/Cliente")
+    @PostMapping("Cliente")
 
     public Cliente crearCliente(@Validated @RequestBody Cliente cliente){
         return clienteRepository.save(cliente);
@@ -68,7 +68,7 @@ public class ClienteController {
         return ResponseEntity.ok(updateCliente);
     }
 
-    @DeleteMapping("/Cliente/{cli_id}")
+    @DeleteMapping("Cliente/{cli_id}")
     public Map<String, Boolean>deleteCliente(@PathVariable(value = "cli_id")Long cli_id)throws ResourceNotFoundException{
 
         Cliente cliente2=clienteRepository.findById(cli_id).orElseThrow(()-> new ResourceNotFoundException("No se pudo encontrar al Cliente con el id:"+cli_id));
