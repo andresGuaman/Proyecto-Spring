@@ -3,10 +3,8 @@ package com.example.springMyStore.Controlador;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.example.springMyStore.Modelo.Persona;
 import com.example.springMyStore.Repositorio.PersonaRepository;
-
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,10 +26,10 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "http://localhost:4200")
 public class PersonaController {
     
-    @Autowired
-    private PersonaRepository personaRepository;
+@Autowired
+private PersonaRepository personaRepository;
 
-    @GetMapping("/Persona")
+@GetMapping("/Persona")
 public List<Persona>getAllPersona(){
     return personaRepository.findAll();
 }
@@ -40,6 +38,14 @@ public List<Persona>getAllPersona(){
 public ResponseEntity<Persona>getPersonaByID(@PathVariable(value = "per_id")Long per_id)throws ResourceNotFoundException{
     Persona persona=personaRepository.findById(per_id).orElseThrow(()->new ResourceNotFoundException("No se encontro a la persona con el id:"+per_id));
     return ResponseEntity.ok().body(persona);
+}
+
+// Listar los contactos por el id del usuario.
+@GetMapping("/Persona/contactos/{cli_id}")
+public List<Persona> getContactsByClientId(@PathVariable(value = "cli_id") Long cli_id) {
+
+    List<Persona> contacts = personaRepository.findContactsByClientId(cli_id);
+    return contacts;
 }
 
 @PostMapping("/Persona")
