@@ -44,7 +44,7 @@ public class ClienteController {
 
     //Find by Username and password
     @GetMapping("Cliente/{cli_usuario}/{cli_password}")
-    public ResponseEntity<Cliente> getClieteByUserPass(@PathVariable(value = "cli_usuario") String cli_usuario, @PathVariable(value = "cli_password") String cli_password) {
+    public ResponseEntity<Cliente> getClienteByUserPass(@PathVariable(value = "cli_usuario") String cli_usuario, @PathVariable(value = "cli_password") String cli_password) {
 
         Cliente cliente = clienteRepository.findByUserPass(cli_usuario, cli_password);
         return ResponseEntity.ok().body(cliente);

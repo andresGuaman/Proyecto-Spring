@@ -39,17 +39,28 @@ public class ChatController {
 
     @GetMapping("Chat/{cha_id}")
     public ResponseEntity<Chat> getChatById(@PathVariable(value = "cha_id")Long cha_id)throws ResourceNotFoundException {
-      Chat chat=chatRepository.findById(cha_id).orElseThrow(()-> new ResourceNotFoundException("No se a podido encontrara el chat por el id:"+cha_id));
+
+        Chat chat=chatRepository.findById(cha_id).orElseThrow(()-> new ResourceNotFoundException("No se a podido encontrara el chat por el id:"+cha_id));
+        return ResponseEntity.ok().body(chat);
+    }
+
+    //GET BY CLI_ID AND EMP_ID
+    @GetMapping("Chat/{cli_id}/{emp_id}")
+    public ResponseEntity<Chat> getChatByCliEmpIds(@PathVariable(value = "cli_id") Long cli_id, @PathVariable(value = "emp_id") Long emp_id) {
+
+        Chat chat = chatRepository.findChatByCliEmpIds(cli_id, emp_id);
         return ResponseEntity.ok().body(chat);
     }
 
     @PostMapping("Chat")
     public Chat createChat (@Validated @RequestBody Chat chat){
+
         return chatRepository.save(chat);
     }
 
     @PutMapping("Chat/{cha_id}")
     public ResponseEntity<Chat> updateChat(@PathVariable(value = "cha_id")Long cha_id, @Validated @RequestBody Chat chat) throws ResourceNotFoundException{
+        
         Chat chat2= chatRepository.findById(cha_id).orElseThrow(()-> new ResourceNotFoundException("No se puede encontrar el chat con el id: "+cha_id));
         chat2.setCha_imagenes(chat.getCha_imagenes());
         chat2.setCha_mensajes(chat.getCha_mensajes());

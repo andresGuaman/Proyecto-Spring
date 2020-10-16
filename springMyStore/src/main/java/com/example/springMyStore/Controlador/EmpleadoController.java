@@ -43,6 +43,21 @@ public class EmpleadoController {
         return ResponseEntity.ok().body(empleado);
     }
 
+    //GET EMPLOYEE BY PERSON'S ID
+    @GetMapping("/Empleado/per_id/{per_id}")
+    public ResponseEntity<Empleado> getEmpleadoByPersonaId(@PathVariable(value = "per_id") Long per_id){
+        Empleado empleado = empleadoRepository.findEmployeeByPerId(per_id);
+        return ResponseEntity.ok().body(empleado);
+    }
+
+    //GET BY USERNAME AND PASSWORD
+    @GetMapping("Empleado/{emp_usuario}/{emp_password}")
+    public ResponseEntity<Empleado> getEmpleadoByUserPass(@PathVariable(value = "emp_usuario") String emp_usuario, @PathVariable(value = "emp_password") String emp_password) {
+    
+        Empleado empleado = empleadoRepository.findByUserPass(emp_usuario, emp_password);
+        return ResponseEntity.ok().body(empleado);
+    }
+
     @PostMapping("/Empleado")
     public Empleado createEmpleado(@Validated @RequestBody Empleado empleado){
         return empleadoRepository.save(empleado);
