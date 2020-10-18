@@ -20,6 +20,10 @@ public class ProductoService {
 		return productoRepository.findAll();
 	}
 	
+	public List<Producto> getProductsByDescription(String pro_descripcion) {
+		return productoRepository.findByDetail(pro_descripcion);
+	}
+
 	public Optional<Producto> getId(Long id){
 		return productoRepository.findById(id);
 	}
