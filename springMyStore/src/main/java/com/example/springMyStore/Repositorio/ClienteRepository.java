@@ -11,4 +11,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long>{
     
     @Query(value = "SELECT c FROM Cliente c WHERE c.cli_usuario = :cli_usuario AND c.cli_password = :cli_password")
     Cliente findByUserPass(@Param("cli_usuario") String cli_usuario, @Param("cli_password") String cli_password);
+
+    @Query(value = "SELECT * FROM Cliente c WHERE c.per_id = :per_id", nativeQuery = true)
+    Cliente findByPerId(@Param("per_id") Long per_id);
 }

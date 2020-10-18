@@ -42,6 +42,14 @@ public class ClienteController {
         return ResponseEntity.ok().body(cliente);
     }
 
+    //Find by per_id
+    @GetMapping("Cliente/per_id/{per_id}")
+    public ResponseEntity<Cliente> getClieteByPerId(@PathVariable(value = "per_id")Long per_id) {
+
+        Cliente cliente = clienteRepository.findByPerId(per_id);
+        return ResponseEntity.ok().body(cliente);
+    }
+
     //Find by Username and password
     @GetMapping("Cliente/{cli_usuario}/{cli_password}")
     public ResponseEntity<Cliente> getClienteByUserPass(@PathVariable(value = "cli_usuario") String cli_usuario, @PathVariable(value = "cli_password") String cli_password) {

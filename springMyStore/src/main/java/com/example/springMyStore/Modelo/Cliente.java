@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
-//import com.fasterxml.jackson.annotation.JsonBackReference;
-//import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "Cliente")
@@ -20,12 +20,10 @@ public class Cliente {
 	@Column (name = "cli_password")
 	private String cli_password;
 
-	//@JsonBackReference
 	@JoinColumn(name = "per_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Persona persona;
 
-	//@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente")
 	private List<Chat> chat;
 
