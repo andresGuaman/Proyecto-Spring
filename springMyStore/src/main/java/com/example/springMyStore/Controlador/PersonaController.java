@@ -41,10 +41,18 @@ public ResponseEntity<Persona>getPersonaByID(@PathVariable(value = "per_id")Long
 }
 
 // Listar los contactos por el id del usuario.
-@GetMapping("/Persona/contactos/{cli_id}")
+@GetMapping("/Persona/contactos-cliente/{cli_id}")
 public List<Persona> getContactsByClientId(@PathVariable(value = "cli_id") Long cli_id) {
 
     List<Persona> contacts = personaRepository.findContactsByClientId(cli_id);
+    return contacts;
+}
+
+// Listar los contactos por el id del usuario.
+@GetMapping("/Persona/contactos-empleado/{emp_id}")
+public List<Persona> getContactsByEmployeeId(@PathVariable(value = "emp_id") Long emp_id) {
+
+    List<Persona> contacts = personaRepository.findContactsByEmployeeId(emp_id);
     return contacts;
 }
 

@@ -4,9 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.transaction.Transactional;
+
 import com.example.springMyStore.Modelo.Chat;
 import com.example.springMyStore.Repositorio.ChatRepository;
-
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -44,6 +45,12 @@ public class ChatController {
         return ResponseEntity.ok().body(chat);
     }
 
+
+    @GetMapping("Chat/all/{cli_id}/{emp_id}")
+    public List<Chat> getAllChatsByCliEmpIds(@PathVariable(value = "cli_id") Long cli_id, @PathVariable(value = "emp_id") Long emp_id){
+        return chatRepository.findAllChatsByCliEmpIds(cli_id, emp_id);
+    }
+
     //GET BY CLI_ID AND EMP_ID
     @GetMapping("Chat/{cli_id}/{emp_id}")
     public ResponseEntity<Chat> getChatByCliEmpIds(@PathVariable(value = "cli_id") Long cli_id, @PathVariable(value = "emp_id") Long emp_id) {
@@ -58,12 +65,31 @@ public class ChatController {
         return chatRepository.save(chat);
     }
 
+    //New method post
+    @Transactional
+    @PostMapping("Chat/{cli_id}/{emp_id}")
+    public Chat insertChat(@RequestBody Chat chat, @PathVariable(value = "cli_id") Long cli_id, @PathVariable(value = "emp_id") Long emp_id){
+
+        long id;
+
+        try {
+            id = chatRepository.maxId();
+        } catch (Exception e) {
+            id = 0;
+        }
+
+        chatRepository.insertChat(id + 1, chat.getCha_imagenes(), chat.getCha_mensajes(), chat.getCha_rol_emisor(), cli_id, emp_id);
+
+        return new Chat(1,"NA","NA","NA");
+    }
+
     @PutMapping("Chat/{cha_id}")
     public ResponseEntity<Chat> updateChat(@PathVariable(value = "cha_id")Long cha_id, @Validated @RequestBody Chat chat) throws ResourceNotFoundException{
         
         Chat chat2= chatRepository.findById(cha_id).orElseThrow(()-> new ResourceNotFoundException("No se puede encontrar el chat con el id: "+cha_id));
         chat2.setCha_imagenes(chat.getCha_imagenes());
         chat2.setCha_mensajes(chat.getCha_mensajes());
+        chat2.setCha_rol_emisor(chat.getCha_rol_emisor());
         final Chat updateChat = chatRepository.save(chat2);
         return ResponseEntity.ok(updateChat);
     }
@@ -76,5 +102,4 @@ public class ChatController {
       response.put("deleted", Boolean.TRUE);
       return response;
     }
-    
 }

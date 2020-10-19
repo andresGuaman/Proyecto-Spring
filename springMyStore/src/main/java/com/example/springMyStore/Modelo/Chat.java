@@ -17,7 +17,10 @@ public class Chat {
 	@Column(name = "cha_imagenes")
 	private String cha_imagenes;
 
-	//@JsonBackReference
+	@Column(name = "cha_rol_emisor")
+	private String cha_rol_emisor;
+
+	// @JsonBackReference
 	@JoinColumn(name = "cli_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Cliente cliente;
@@ -25,32 +28,47 @@ public class Chat {
 	@JoinColumn(name = "emp_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Empleado empleado;
-	
+
 	public Chat() {
-		
+
 	}
-	public Chat(long cha_id, String cha_mensajes, String cha_imagenes) {
-		this.cha_id=cha_id;
-		this.cha_mensajes=cha_mensajes;
-		this.cha_imagenes=cha_imagenes;
+
+	public Chat(long cha_id, String cha_mensajes, String cha_imagenes, String cha_rol_emisor) {
+		this.cha_id = cha_id;
+		this.cha_mensajes = cha_mensajes;
+		this.cha_imagenes = cha_imagenes;
+		this.cha_rol_emisor = cha_rol_emisor;
 	}
+
 	public long getCha_id() {
 		return cha_id;
 	}
+
 	public void setCha_id(long cha_id) {
 		this.cha_id = cha_id;
 	}
+
 	public String getCha_mensajes() {
 		return cha_mensajes;
 	}
+
 	public void setCha_mensajes(String cha_mensajes) {
 		this.cha_mensajes = cha_mensajes;
 	}
+
 	public String getCha_imagenes() {
 		return cha_imagenes;
 	}
+
 	public void setCha_imagenes(String cha_imagenes) {
 		this.cha_imagenes = cha_imagenes;
 	}
-	
+
+	public String getCha_rol_emisor() {
+		return this.cha_rol_emisor;
+	}
+
+	public void setCha_rol_emisor(String cha_rol_emisor) {
+		this.cha_rol_emisor = cha_rol_emisor;
+	}
 }
